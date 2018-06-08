@@ -184,20 +184,10 @@ class Bot extends EventEmitter
     keyword = keyword.toLowerCase();
     
     //if the command exists, check the permissions.
-    if(commands[keyword] && typeof commands[keyword].getAction() === 'function')
+    let command = utility.getCommand(keyword);   
+    if(command != null) 
     {
-      processCommand(keyword, details);
-    }
-    else
-    {
-      //didn't find command
-      for(let index in commands)
-      {
-        if(commands[index] && typeof commands[index] === 'object' && commands[index].getAlias().indexOf(keyword) > -1)
-        {
-          processCommand(index, details);
-        }
-      }
+      processCommand(command, details);
     }
     
     function handleDisabled(details)
@@ -212,13 +202,13 @@ class Bot extends EventEmitter
     }
     function processCommand(command, details)
     {
-      if(commands[command].getPerm() === 'public')
+      if(command.getPerm() === 'public')
       {
-        commands[command].act(details);
+        command.act(details);
       }
-      else if(commands[command].getPerm() === 'private' && details.isAdministrator)
+      else if(command.getPerm() === 'private' && details.isAdministrator)
       {
-        commands[command].act(details);
+        command.act(details);
       }
     }
   }
