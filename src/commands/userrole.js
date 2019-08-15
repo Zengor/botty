@@ -8,7 +8,9 @@ module.exports = function command(requires)
     name: 'User Role',
     inline: true,
     alias: ['ur'],
-    description: 'Lists roles, or assigns/removes the role searched for',
+    blurb: 'Assigns/removes roles',
+    longDescription: '',
+    usages: ['`!ur` ― Returns a list of roles available', '`!ur {role name}` ― Assigns the role to yourself, or, if already assign, removes it.'],
     permission: 'public',
     action: function(details)
     {
@@ -20,10 +22,10 @@ module.exports = function command(requires)
       {
         info.db.listRoles().then((roleNames) => {
           let emb = {};
-          emb.title = 'User selectable roles.'
+          emb.title = 'User selectable roles.';
           emb.description = roleNames.join('\n');
           bot.sendMessage(details.channelID, {embed: emb});
-        })
+        });
       }
       else
       {
@@ -41,7 +43,7 @@ module.exports = function command(requires)
             else
             {
               //if they don't already have the role, give it to them.
-              let roleSearch = bot.servers[details.serverID].members[details.userID].roles.find(memberRole => memberRole === roleID)
+              let roleSearch = bot.servers[details.serverID].members[details.userID].roles.find(memberRole => memberRole === roleID);
               if(roleSearch === undefined)
               {
                 bot.servers[details.serverID].members[details.userID].addToRole(roleID).then((result) =>

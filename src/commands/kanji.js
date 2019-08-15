@@ -8,7 +8,9 @@ module.exports = function command(requires)
     name: 'Kanji',
     inline: true,
     alias: ['k'],
-    description: '<kanji> , Looks up kanji information.',
+    blurb: 'Looks up kanji information.',
+    longDescription: 'Retrieves kanji data from kanjidic2. \n Gets info such as kanji meaning, readings, radical, composing elements, and JLPT level.',
+    usages: ['`!kanji` {kanji}'],
     permission: 'public',
     action: function(details)
     {

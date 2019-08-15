@@ -8,7 +8,9 @@ module.exports = function command(requires)
     name: 'Tag',
     inline: true,
     alias: ['t'],
-    description: 'Lists tags, or displays the content of a specific tag',
+    blurb: 'Retrieves important texts',
+    longDescription: 'Lists tags, or displays the content of a specific tag',
+    usages: ['!t ―', '!t {tag name} ―'],
     permission: 'public',
     action: function(details)
     {

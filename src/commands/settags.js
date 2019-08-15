@@ -8,7 +8,9 @@ module.exports = function command(requires)
     name: 'Set Tags',
     inline: true,
     alias: ['st'],
-    description: 'Sets available tags.',
+    blurb: 'Stores texts for easy retrieval',
+    longDescription: 'asdf',
+    usages: ['!st {tag name} {text} ― '],
     permission: 'private',
     action: function(details)
     {
